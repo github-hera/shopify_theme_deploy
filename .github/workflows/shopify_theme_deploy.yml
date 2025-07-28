@@ -39,6 +39,7 @@ jobs:
             shopify theme push \
               --json \
               --theme-id "$THEME_ID"
+          fi
             
         env:
           SHOPIFY_CLI_THEME_TOKEN: shptka_63b498d336592addc4ba09b232f4a344
