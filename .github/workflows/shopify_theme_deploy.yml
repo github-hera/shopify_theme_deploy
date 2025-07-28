@@ -41,5 +41,5 @@ jobs:
               --theme-id "$THEME_ID"
             
         env:
-          SHOPIFY_CLI_AUTH_TOKEN: shptka_63b498d336592addc4ba09b232f4a344
+          SHOPIFY_CLI_THEME_TOKEN: shptka_63b498d336592addc4ba09b232f4a344
           SHOPIFY_FLAG_STORE: nine-pillars.myshopify.com 
