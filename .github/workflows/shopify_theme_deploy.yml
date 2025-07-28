@@ -44,4 +44,4 @@ jobs:
               --theme-id "$THEME_ID"
           fi
         env:
-          SHOPIFY_CLI_AUTH_TOKEN: ${{ secrets.SHOPIFY_CLI_TOKEN }}
+          SHOPIFY_CLI_AUTH_TOKEN: ${{ secrets.SHOPIFY_CLI_AUTH_TOKEN_NEW }}
