@@ -24,21 +24,22 @@ jobs:
       - name: Deploy to theme
         run: |
           THEME_NAME="PR #${PR_NUMBER}"
-          THEME_ID=$(shopify theme list --store=${{ secrets.SHOPIFY_STORE_URL }} | grep "$THEME_NAME" | awk '{print $1}')
+          
+          # Use SHOPIFY_FLAG_STORE from environment variable
+          THEME_ID=$(shopify theme list | grep "$THEME_NAME" | awk '{print $1}')
 
           if [ -z "$THEME_ID" ]; then
-            CREATED_THEME_OUTPUT=$(shopify theme create "$THEME_NAME" --store=${{ secrets.SHOPIFY_STORE_URL }} --json)
+            # Use SHOPIFY_FLAG_STORE from environment variable
+            CREATED_THEME_OUTPUT=$(shopify theme create "$THEME_NAME" --json)
             CREATED_THEME_ID=$(echo "$CREATED_THEME_OUTPUT" | jq -r '.id')
             shopify theme push \
               --json \
-              --theme-id "$CREATED_THEME_ID" \
-              --store=${{ secrets.SHOPIFY_STORE_URL }}
+              --theme-id "$CREATED_THEME_ID"
           else
             shopify theme push \
               --json \
-              --theme-id "$THEME_ID" \
-              --store=${{ secrets.SHOPIFY_STORE_URL }}
-          fi
+              --theme-id "$THEME_ID"
+            
         env:
           SHOPIFY_CLI_AUTH_TOKEN: shptka_63b498d336592addc4ba09b232f4a344
-          SHOPIFY_FLAG_STORE: nine-pillars.myshopify.com
+          SHOPIFY_FLAG_STORE: nine-pillars.myshopify.com 
