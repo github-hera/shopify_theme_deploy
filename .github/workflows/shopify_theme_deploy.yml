@@ -30,7 +30,7 @@ jobs:
 
           if [ -z "$THEME_ID" ]; then
             # Use SHOPIFY_FLAG_STORE from environment variable
-            CREATED_THEME_OUTPUT=$(shopify theme create "$THEME_NAME" --json)
+            CREATED_THEME_OUTPUT=$(shopify theme create --name "$THEME_NAME" --json)
             CREATED_THEME_ID=$(echo "$CREATED_THEME_OUTPUT" | jq -r '.id')
             shopify theme push \
               --json \
@@ -42,5 +42,5 @@ jobs:
           fi
             
         env:
-          SHOPIFY_CLI_THEME_TOKEN: shptka_63b498d336592addc4ba09b232f4a344
-          SHOPIFY_FLAG_STORE: nine-pillars.myshopify.com 
+          SHOPIFY_CLI_AUTH_TOKEN: shptka_63b498d336592addc4ba09b232f4a344
+          SHOPIFY_FLAG_STORE: nine-pillars.myshopify.com
